@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: url('6213932.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            animation: fadeIn 2s ease-in-out, colorChange 5s infinite;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes colorChange {
+            0% {
+                color: #ffffff; 
+            }
+            25% {
+                color: #7ca7a5; 
+            }
+            50% {
+                color: #2f8f9c; 
+            }
+            75% {
+                color: rgb(134, 184, 184); 
+            }
+            100% {
+                color: #ffffff;
+            }
+        }
+
+        main {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 1200px;
+            gap: 20px;
+        }
+
+        section {
+            flex: 2;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        aside {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        form input, form textarea, form button {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        form input, form textarea {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        form input::placeholder, form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        form button {
+            background: #2f8f9c;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        form button:hover {
+            background: #7ca7a5;
+            transform: scale(1.05);
+        }
+
+        .created-item {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .created-item img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .created-item button {
+            background: #2f8f9c;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .created-item button:hover {
+            background: #7ca7a5;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hello Yousri, This is your Admin Page</h1>
+    </header>
+    <main>
+        <section>
+            <form id="exam-form">
+                <label for="exam-name">Exam Name</label>
+                <input type="text" id="exam-name" name="exam-name" placeholder="Enter exam name" required>
+
+                <label for="exam-price">Exam Price</label>
+                <input type="number" id="exam-price" name="exam-price" placeholder="Enter exam price" required>
+
+                <label for="exam-image">Exam Image</label>
+                <input type="file" id="exam-image" name="exam-image" accept="image/*" required>
+
+                <label for="exam-description">Exam Description</label>
+                <textarea id="exam-description" name="exam-description" rows="4" placeholder="Enter exam description" required></textarea>
+
+                <button type="button" id="create-button" onclick="create()">Create</button>
+                <button type="button" id="go-back-button" onclick="location.href='index.html'">Go Back</button>
+            </form>
+            <div id="created-items"></div>
+        </section>
+        <aside>
+            <h2>Mes Commandes</h2>
+        </aside>
+    </main>
+
+    <script>
+        function create() {
+            const name = document.getElementById('exam-name').value;
+            const price = document.getElementById('exam-price').value;
+            const description = document.getElementById('exam-description').value;
+            const imageInput = document.getElementById('exam-image');
+            const createdItems = document.getElementById('created-items');
+
+            if (!name || !price || !description || !imageInput.files.length) {
+                alert('Please fill out all fields.');
+                return false;
+            }
+
+            const imageUrl = URL.createObjectURL(imageInput.files[0]);
+
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'created-item';
+
+            itemDiv.innerHTML = `
+                <h3>${name}</h3>
+                <img src="${imageUrl}" alt="${name}">
+                <p><strong>Price:</strong> $${price}</p>
+                <p>${description}</p>
+                <button type="button">Add to Cart</button>
+            `;
+
+            createdItems.appendChild(itemDiv);
+            document.getElementById('exam-form').reset();
+        }
+    </script>
+</body>
+</html>

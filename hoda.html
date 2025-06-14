@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madame Hoda</title>
+    <link rel="stylesheet" href="style3.css">
+    <script>
+        let scale = 1;
+        function again() {
+            var yesButton = document.getElementById("yes");
+            scale += 0.5;
+            yesButton.style.transform = `scale(${scale})`;
+            yesButton.style.transition = "transform 0.3s ease-in-out";
+        }
+    </script>
+</head>
+<body>
+    <div class="beg">
+        <h1>Madame miselech Ta3tini 20</h1>
+        <center><img src="beg.jpg"><br></center>
+        <center><input type="button" class="button" id="yes" value="Yes!"onclick="window.location.href='merci.html'"></center>
+        <center><input type="button" class="button" value="No!" onclick="return again()"></center>
+    </div>
+</body>
+</html>

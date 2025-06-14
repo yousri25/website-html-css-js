@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <style>
+        body {
+            color: black;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('6213932.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .log {
+            backdrop-filter: blur(7px);
+            opacity: 0.9;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 350px;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .log h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        input[type="text"]::placeholder, input[type="password"]::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        button {
+            width: 85%; /* Made buttons smaller */
+            padding: 8px; /* Reduced padding */
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: rgb(111, 186, 186);
+            color: white;
+            font-size: 0.9rem; /* Reduced font size */
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease; /* Added smooth transition */
+        }
+
+        button:hover {
+            transform: scale(1.5);
+            background-color: rgb(91, 166, 166);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-size: 0.9rem;
+        }
+    </style>
+    <script>
+        function song() {
+            var audio = new Audio('Auf Der Heide Blüht Ein Kleines Blümeleinerika [TubeRipper.com].mp3');
+            audio.play();
+            audio.loop = true;
+            audio.volume = 0.2;
+        }
+
+        function verif() {
+            var username = document.getElementById("email").value;
+            var password = document.getElementById("pass").value;
+
+            for (var i = 0; i < username.length; i++) {
+                var ch = username.charAt(i);
+                if (!((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z'))) {
+                    alert("Username mch valid");
+                    document.getElementById("email").value = "";
+                    return false;
+                }
+            }
+
+            if (username === "issabodor") {
+                alert("5ouya enta mamnou3 3lik d5ol");
+                document.getElementById("email").value = "";
+                return false;
+            }
+
+            if (password.length < 8) {
+                alert("Password th3if");
+                document.getElementById("pass").value = "";
+                return false;
+            }
+
+            if (username === "madamehoda") {
+                window.location.href = "hoda.html";
+                return false;
+            }
+
+            if (username === "yousri" && password === "admin1234") {
+                alert("Mar7be bik si Yousri");
+                window.location.href = "admin.html";
+                return false;
+            }
+
+            return true;
+        }
+
+        function rememberMeAlert() {
+            alert("yabta fel habta");
+            document.getElementById("check").checked = false;
+        }
+    </script>
+</head>
+<body onload="song()">
+    <div class="log">
+        <h1>Log In</h1>
+        <div class="container">
+            <input type="text" id="email" placeholder="Username"">
+        </div>
+        <div class="container">
+            <input type="password" id="pass" placeholder="Password">
+        </div>
+        <div class="container">
+            <input type="checkbox" id="check" onclick="rememberMeAlert()">
+            <label for="check">Remember Me</label>
+        </div>
+        <a href="forgot.html"><button>Nsit haja?</button></a>
+        <a href="main.html"><button onclick="return verif()">Log In</button></a>
+        <p>Ma 3andekch kont ??</p>
+        <a href="signup.html"><button>Sign Up</button></a>
+        <p>Mat7ebech ta3mel kont :(</p>
+        <a href="truemain.html"><button>Go Back</button></a>
+    </div>
+</body>
+</html>
